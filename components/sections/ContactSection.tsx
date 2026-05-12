@@ -11,7 +11,7 @@ export default function ContactSection({ opacity }: Props) {
   return (
     <section
       className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none select-none"
-      style={{ opacity }}
+      style={{ opacity, background: 'rgba(10, 6, 3, 0.88)' }}
     >
       <div className="px-8 md:px-16 max-w-4xl">
         <motion.p
@@ -37,7 +37,7 @@ export default function ContactSection({ opacity }: Props) {
         </motion.h2>
 
         <motion.p
-          className="font-body text-mist leading-relaxed mb-14"
+          className="font-body text-sand/65 leading-relaxed mb-14"
           style={{ fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)' }}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 16 }}
@@ -66,7 +66,7 @@ export default function ContactSection({ opacity }: Props) {
 
         {/* Footer */}
         <motion.p
-          className="font-body text-mist/30 mt-24"
+          className="font-body text-sand/35 mt-24"
           style={{ fontSize: '0.62rem', letterSpacing: '0.2em' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: isVisible ? 1 : 0 }}
