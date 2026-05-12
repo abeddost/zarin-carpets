@@ -13,20 +13,20 @@ export default function Hero({ opacity }: HeroProps) {
   useEffect(() => {
     if (!titleRef.current) return
 
-    const text = 'ZARIN HOME'
-    const chars = text.split('').map((char) => {
+    const words = ['ZARIN', 'HOME']
+    const lines = words.map((word) => {
       const span = document.createElement('span')
-      span.textContent = char === ' ' ? ' ' : char
-      span.style.display = 'inline-block'
+      span.textContent = word
+      span.style.display = 'block'
       span.style.willChange = 'transform, opacity, filter'
       return span
     })
 
     titleRef.current.innerHTML = ''
-    chars.forEach((s) => titleRef.current!.appendChild(s))
+    lines.forEach((s) => titleRef.current!.appendChild(s))
 
     gsap.fromTo(
-      chars,
+      lines,
       { opacity: 0, filter: 'blur(16px)', y: 50 },
       {
         opacity: 1,
@@ -45,11 +45,12 @@ export default function Hero({ opacity }: HeroProps) {
       className="absolute inset-0 flex flex-col justify-center pointer-events-none select-none"
       style={{ opacity }}
     >
-      <div className="px-8 md:px-16 lg:px-24 w-full" style={{ maxWidth: '44vw' }}>
+      <div className="w-full px-5 sm:px-8 md:px-16 lg:px-24">
+        <div className="max-w-[18rem] rounded-sm bg-charcoal/72 px-5 py-6 shadow-2xl shadow-black/30 backdrop-blur-sm sm:max-w-[24rem] sm:bg-charcoal/58 md:max-w-[44vw] md:bg-transparent md:p-0 md:shadow-none md:backdrop-blur-none">
         {/* Label */}
         <motion.p
-          className="font-body text-sand/60 uppercase mb-8 md:mb-10"
-          style={{ letterSpacing: '0.32em', fontSize: '0.65rem' }}
+          className="font-body text-sand uppercase mb-5 md:mb-10"
+          style={{ letterSpacing: '0.18em', fontSize: '0.65rem' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.1 }}
@@ -60,21 +61,21 @@ export default function Hero({ opacity }: HeroProps) {
         {/* Main headline */}
         <div
           ref={titleRef}
-          className="font-display text-cream uppercase leading-none mb-6"
+          className="font-display text-cream uppercase mb-5"
           style={{
-            fontSize: 'clamp(3rem, 8vw, 7rem)',
-            letterSpacing: '0.18em',
-            lineHeight: '0.88',
+            fontSize: 'clamp(4.4rem, 18vw, 7rem)',
+            letterSpacing: '0.08em',
+            lineHeight: '0.78',
           }}
           aria-label="ZARIN HOME"
         />
 
         {/* Signature */}
         <motion.p
-          className="font-display text-sand/75 italic font-light"
+          className="font-display text-sand italic font-light"
           style={{
-            fontSize: 'clamp(1rem, 2.2vw, 1.6rem)',
-            letterSpacing: '0.32em',
+            fontSize: 'clamp(1.15rem, 4vw, 1.6rem)',
+            letterSpacing: '0.16em',
           }}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,7 +86,7 @@ export default function Hero({ opacity }: HeroProps) {
 
         {/* Scroll hint */}
         <motion.div
-          className="mt-16 md:mt-20 flex items-center gap-4"
+          className="mt-10 flex items-center gap-4 md:mt-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.6 }}
@@ -98,6 +99,7 @@ export default function Hero({ opacity }: HeroProps) {
             Scrollen zum Entdecken
           </span>
         </motion.div>
+        </div>
       </div>
     </section>
   )
