@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: #1A1814;
+    color: #F5F0E8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(200, 184, 154, 0.25);
+    color: #F5F0E8;
+  }
+}
+
+@layer utilities {
+  .text-hero {
+    font-size: clamp(4.5rem, 14vw, 11rem);
+    line-height: 0.88;
+    letter-spacing: 0.18em;
+  }
+
+  .text-hero-sm {
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    line-height: 0.9;
+    letter-spacing: 0.15em;
+  }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0) }
+  10%       { transform: translate(-2%, -3%) }
+  20%       { transform: translate(3%, 1%) }
+  30%       { transform: translate(-1%, 4%) }
+  40%       { transform: translate(2%, -2%) }
+  50%       { transform: translate(-3%, 2%) }
+  60%       { transform: translate(1%, -4%) }
+  70%       { transform: translate(-2%, 3%) }
+  80%       { transform: translate(3%, -1%) }
+  90%       { transform: translate(-1%, 2%) }
+}
+
+/* Smooth fade for catalogue images */
+.catalogue-img {
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Horizontal progress bar */
+.progress-bar {
+  transform-origin: left center;
+}
