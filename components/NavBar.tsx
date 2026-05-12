@@ -40,7 +40,7 @@ export default function NavBar() {
         className="font-body text-sand/80 border border-sand/30 rounded-full px-5 py-2 text-xs tracking-widest uppercase pointer-events-auto hover:border-sand hover:text-cream transition-all duration-500"
         style={{ letterSpacing: '0.2em' }}
       >
-        Enquire
+        Anfragen
       </a>
     </nav>
   )

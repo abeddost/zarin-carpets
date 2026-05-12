@@ -54,7 +54,7 @@ export default function Hero({ opacity }: HeroProps) {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.1 }}
         >
-          — Handcrafted Carpets —
+          — Teppiche —
         </motion.p>
 
         {/* Main headline */}
@@ -95,7 +95,7 @@ export default function Hero({ opacity }: HeroProps) {
             className="font-body text-sand/40 uppercase"
             style={{ fontSize: '0.6rem', letterSpacing: '0.28em' }}
           >
-            Scroll to discover
+            Scrollen zum Entdecken
           </span>
         </motion.div>
       </div>

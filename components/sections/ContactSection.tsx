@@ -21,7 +21,7 @@ export default function ContactSection({ opacity }: Props) {
           animate={{ opacity: isVisible ? 1 : 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
         >
-          05 — Begin your story
+          05 — Beginne deine Geschichte
         </motion.p>
 
         <motion.h2
@@ -31,9 +31,9 @@ export default function ContactSection({ opacity }: Props) {
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
           transition={{ duration: 1.1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          Bring warmth
+          Wärme ins
           <br />
-          <span className="italic text-sand/80">home.</span>
+          <span className="italic text-sand/80">Zuhause.</span>
         </motion.h2>
 
         <motion.p
@@ -43,9 +43,9 @@ export default function ContactSection({ opacity }: Props) {
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 16 }}
           transition={{ duration: 0.9, delay: 0.4 }}
         >
-          Commission a piece. Start a conversation.
+          Gib ein Stück in Auftrag. Beginne ein Gespräch.
           <br />
-          Every Zarin carpet is made to order — a collaboration between your vision and our craft.
+          Jeder Zarin-Teppich wird auf Bestellung gefertigt — eine Zusammenarbeit zwischen deiner Vision und unserem Handwerk.
         </motion.p>
 
         <motion.div
@@ -72,7 +72,7 @@ export default function ContactSection({ opacity }: Props) {
           animate={{ opacity: isVisible ? 1 : 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          © 2025 Zarin Home — by Habib &amp; Cristiana
+          © 2025 Zarin Home — von Habib &amp; Cristiana
         </motion.p>
       </div>
     </section>

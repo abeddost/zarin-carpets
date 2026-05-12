@@ -61,7 +61,7 @@ export default function CatalogueSection({ scrollIndex, catProgress }: Props) {
               <motion.img
                 key={FEATURED[idx].src}
                 src={FEATURED[idx].src}
-                alt={isCenter ? `Carpet ${idx + 1}` : ''}
+                alt={isCenter ? `Teppich ${idx + 1}` : ''}
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ filter: `brightness(${brightness}) saturate(0.9)` }}
                 loading={isCenter && scrollIndex < 2 ? 'eager' : 'lazy'}
