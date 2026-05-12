@@ -17,7 +17,7 @@ export default function Hero({ opacity }: HeroProps) {
     const chars = text.split('').map((char) => {
       const span = document.createElement('span')
       span.textContent = char === ' ' ? ' ' : char
-      span.style.display = 'inline-block'
+      span.style.display = char === ' ' ? 'inline' : 'inline-block'
       span.style.willChange = 'transform, opacity, filter'
       return span
     })
@@ -45,10 +45,10 @@ export default function Hero({ opacity }: HeroProps) {
       className="absolute inset-0 flex flex-col justify-center pointer-events-none select-none"
       style={{ opacity }}
     >
-      <div className="px-8 md:px-16 lg:px-24 w-full" style={{ maxWidth: '44vw' }}>
+      <div className="px-8 md:px-16 lg:px-24 w-full max-w-[88vw] md:max-w-[44vw]">
         {/* Label */}
         <motion.p
-          className="font-body text-sand/60 uppercase mb-8 md:mb-10"
+          className="font-body text-sand/80 uppercase mb-8 md:mb-10"
           style={{ letterSpacing: '0.32em', fontSize: '0.65rem' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -65,13 +65,14 @@ export default function Hero({ opacity }: HeroProps) {
             fontSize: 'clamp(3rem, 8vw, 7rem)',
             letterSpacing: '0.18em',
             lineHeight: '0.88',
+            textShadow: '0 2px 24px rgba(0,0,0,0.95), 0 0 48px rgba(0,0,0,0.7)',
           }}
           aria-label="ZARIN HOME"
         />
 
         {/* Signature */}
         <motion.p
-          className="font-display text-sand/75 italic font-light"
+          className="font-display text-cream/90 italic font-light"
           style={{
             fontSize: 'clamp(1rem, 2.2vw, 1.6rem)',
             letterSpacing: '0.32em',
