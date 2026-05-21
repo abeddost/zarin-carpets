@@ -55,11 +55,11 @@ export default function ContactSection() {
 
         <div className="mt-8">
           <a
-            href="mailto:studio@zarinhome.com"
+            href="mailto:zarinhome1@gmail.com"
             className="group inline-block font-body text-sand border-b border-sand/30 pb-1 text-sm tracking-widest uppercase hover:text-cream hover:border-sand transition-all duration-500"
             style={{ letterSpacing: '0.22em', fontSize: '0.78rem' }}
           >
-            studio@zarinhome.com
+            zarinhome1@gmail.com
             <span className="block h-px bg-sand scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left mt-0.5" />
           </a>
         </div>
