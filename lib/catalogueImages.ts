@@ -122,3 +122,19 @@ export const CATALOGUE: CarpetImage[] = [
 
 export const LANDSCAPE_IMAGES = CATALOGUE.filter((i) => i.format === 'landscape')
 export const PORTRAIT_IMAGES = CATALOGUE.filter((i) => i.format === 'portrait')
+
+export function optimizedCatalogueSrc(src: string, width = 1200, format = 'webp') {
+  const fileName = src.split('/').pop()
+  if (!fileName) return src
+
+  const extensionIndex = fileName.lastIndexOf('.')
+  const baseName = extensionIndex > -1 ? fileName.slice(0, extensionIndex) : fileName
+
+  return `/foto/${baseName}-${width}.${format}`
+}
+
+export function optimizedCatalogueSrcSet(src: string, format = 'webp') {
+  return [480, 768, 1200]
+    .map((width) => `${optimizedCatalogueSrc(src, width, format)} ${width}w`)
+    .join(', ')
+}

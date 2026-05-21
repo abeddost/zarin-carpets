@@ -1,130 +1,80 @@
-'use client'
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { CATALOGUE } from '@/lib/catalogueImages'
+import { CATALOGUE, optimizedCatalogueSrc, optimizedCatalogueSrcSet } from '@/lib/catalogueImages'
 
-const FEATURED = CATALOGUE
-
-const SLOTS_DESKTOP = [
-  { offset: -2, xVw: -49, wVw: 14, opacity: 0.15, brightness: 0.5 },
-  { offset: -1, xVw: -27, wVw: 20, opacity: 0.40, brightness: 0.68 },
-  { offset:  0, xVw:   0, wVw: 28, opacity: 1.00, brightness: 1.0 },
-  { offset: +1, xVw: +27, wVw: 20, opacity: 0.40, brightness: 0.68 },
-  { offset: +2, xVw: +49, wVw: 14, opacity: 0.15, brightness: 0.5 },
-]
-
-const SLOTS_MOBILE = [
-  { offset: -1, xVw: -82, wVw: 55, opacity: 0.25, brightness: 0.65 },
-  { offset:  0, xVw:   0, wVw: 75, opacity: 1.00, brightness: 1.0 },
-  { offset: +1, xVw: +82, wVw: 55, opacity: 0.25, brightness: 0.65 },
-]
-
-interface Props {
-  scrollIndex: number
-  catProgress: number
-}
-
-export default function CatalogueSection({ scrollIndex, catProgress }: Props) {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check, { passive: true })
-    return () => window.removeEventListener('resize', check)
-  }, [])
-
-  const SLOTS = isMobile ? SLOTS_MOBILE : SLOTS_DESKTOP
-
+export default function CatalogueSection() {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {SLOTS.map(({ offset, xVw, wVw, opacity, brightness }) => {
-        const idx = Math.max(0, Math.min(FEATURED.length - 1, scrollIndex + offset))
-        const isCenter = offset === 0
-
-        return (
-          <div
-            key={offset}
-            style={{
-              position: 'absolute',
-              width: `${wVw}vw`,
-              aspectRatio: '3/4',
-              left: '50%',
-              top: '50%',
-              transform: `translate(calc(-50% + ${xVw}vw), -50%)`,
-              opacity,
-              zIndex: isCenter ? 10 : 5 - Math.abs(offset),
-              overflow: 'hidden',
-            }}
-          >
-            <AnimatePresence>
-              <motion.img
-                key={FEATURED[idx].src}
-                src={FEATURED[idx].src}
-                alt={isCenter ? `Teppich ${idx + 1}` : ''}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ filter: `brightness(${brightness}) saturate(0.9)` }}
-                loading={isCenter && scrollIndex < 2 ? 'eager' : 'lazy'}
-                decoding="async"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              />
-            </AnimatePresence>
-
-            {isCenter && (
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  border: '1px dashed rgba(200,184,154,0.2)',
-                  zIndex: 11,
-                }}
-              />
-            )}
+    <section id="catalogue" className="relative px-4 pb-20 pt-24 sm:px-6 md:px-8 md:pb-28 md:pt-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-8 flex items-end justify-between gap-6 md:mb-12">
+          <div>
+            <p
+              className="font-body text-sand/50 uppercase"
+              style={{ fontSize: '0.62rem', letterSpacing: '0.28em' }}
+            >
+              Catalogue
+            </p>
+            <h2
+              className="mt-3 font-display text-cream"
+              style={{ fontSize: 'clamp(2.5rem, 9vw, 5.5rem)', lineHeight: 0.92 }}
+            >
+              Teppiche
+            </h2>
           </div>
-        )
-      })}
 
-      {/* Counter */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '2.5rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 20,
-        }}
-      >
-        <span
-          className="font-body text-sand/40 uppercase"
-          style={{ fontSize: '0.6rem', letterSpacing: '0.3em' }}
-        >
-          {String(scrollIndex + 1).padStart(2, '0')} — {String(FEATURED.length).padStart(2, '0')}
-        </span>
-      </div>
+          <p
+            className="shrink-0 pb-1 font-body text-sand/45 uppercase"
+            style={{ fontSize: '0.62rem', letterSpacing: '0.24em' }}
+          >
+            {CATALOGUE.length} pieces
+          </p>
+        </div>
 
-      {/* Progress bar */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '1px',
-          background: 'rgba(200,184,154,0.08)',
-          zIndex: 20,
-        }}
-      >
-        <div
-          style={{
-            height: '100%',
-            width: `${catProgress * 100}%`,
-            background: 'rgba(200,184,154,0.4)',
-            transition: 'width 0.1s linear',
-          }}
-        />
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {CATALOGUE.map((item, index) => {
+            const isPriority = index < 4
+
+            return (
+              <article key={item.src} className="catalogue-card group">
+                <div className="relative aspect-[3/4] overflow-hidden bg-black/20">
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcSet={optimizedCatalogueSrcSet(item.src, 'avif')}
+                      sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
+                    />
+                    <source
+                      type="image/webp"
+                      srcSet={optimizedCatalogueSrcSet(item.src, 'webp')}
+                      sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
+                    />
+                    <img
+                      src={optimizedCatalogueSrc(item.src)}
+                      alt={`Teppich ${index + 1}`}
+                      className="h-full w-full object-contain p-1 transition-transform duration-700 ease-out md:p-2 md:group-hover:scale-[1.025]"
+                      sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"
+                      loading={isPriority ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
+              <div className="mt-2 flex items-center justify-between gap-3 px-0.5 md:mt-3">
+                <p
+                  className="font-body text-sand/50 uppercase"
+                  style={{ fontSize: '0.58rem', letterSpacing: '0.18em' }}
+                >
+                  {String(index + 1).padStart(3, '0')}
+                </p>
+                <p
+                  className="font-body text-sand/35 uppercase"
+                  style={{ fontSize: '0.55rem', letterSpacing: '0.16em' }}
+                >
+                  {item.format}
+                </p>
+              </div>
+            </article>
+            )
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

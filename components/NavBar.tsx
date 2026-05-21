@@ -34,13 +34,11 @@ export default function NavBar() {
       </span>
 
       <a
-        href="https://wa.me/4917672465789"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="#contact"
         className="font-body text-sand/80 border border-sand/30 rounded-full px-5 py-2 text-xs tracking-widest uppercase pointer-events-auto hover:border-sand hover:text-cream transition-all duration-500"
         style={{ letterSpacing: '0.2em' }}
       >
-        Anfragen
+        Kontakt
       </a>
     </nav>
   )

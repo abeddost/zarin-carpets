@@ -13,6 +13,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    text-size-adjust: 100%;
   }
 
   ::selection {
@@ -35,25 +36,74 @@
   }
 }
 
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0) }
-  10%       { transform: translate(-2%, -3%) }
-  20%       { transform: translate(3%, 1%) }
-  30%       { transform: translate(-1%, 4%) }
-  40%       { transform: translate(2%, -2%) }
-  50%       { transform: translate(-3%, 2%) }
-  60%       { transform: translate(1%, -4%) }
-  70%       { transform: translate(-2%, 3%) }
-  80%       { transform: translate(3%, -1%) }
-  90%       { transform: translate(-1%, 2%) }
+@layer components {
+  .catalogue-card {
+    contain: layout paint style;
+    border-bottom: 1px solid rgba(200, 184, 154, 0.08);
+  }
+
+  .hero-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(2.6rem);
+    filter: blur(12px);
+    animation: hero-title-in 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-fade-in,
+  .hero-fade-up {
+    opacity: 0;
+    animation: hero-fade-in 900ms ease forwards;
+  }
+
+  .hero-fade-up {
+    transform: translateY(0.75rem);
+    animation-name: hero-fade-up;
+  }
+
+  .film-grain {
+    display: none;
+  }
+
+  .film-grain-layer {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0 1px, transparent 1px),
+      radial-gradient(circle at 70% 80%, rgba(255,255,255,0.22) 0 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+  }
+
+  @media (min-width: 768px) {
+    .catalogue-card {
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .catalogue-card:hover {
+      opacity: 0.92;
+    }
+
+    .film-grain {
+      display: block;
+    }
+  }
 }
 
-/* Smooth fade for catalogue images */
-.catalogue-img {
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes hero-title-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-/* Horizontal progress bar */
-.progress-bar {
-  transform-origin: left center;
+@keyframes hero-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
