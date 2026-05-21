@@ -38,8 +38,13 @@
 
 @layer components {
   .catalogue-card {
-    contain: layout paint style;
     border-bottom: 1px solid rgba(200, 184, 154, 0.08);
+  }
+
+  @media (min-width: 768px) {
+    .catalogue-card {
+      contain: layout paint style;
+    }
   }
 
   .hero-char {

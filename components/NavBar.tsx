@@ -2,15 +2,13 @@
 import { useEffect, useState } from 'react'
 
 export default function NavBar() {
-  const [visible, setVisible] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 1200)
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.15)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
-      clearTimeout(timer)
       window.removeEventListener('scroll', onScroll)
     }
   }, [])
@@ -19,7 +17,6 @@ export default function NavBar() {
     <nav
       className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-8 md:px-14 py-6 transition-opacity duration-700"
       style={{
-        opacity: visible ? 1 : 0,
         background: scrolled ? 'rgba(26,24,20,0.55)' : 'transparent',
         backdropFilter: scrolled ? 'blur(14px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
