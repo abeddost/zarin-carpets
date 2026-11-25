@@ -1,4 +1,3 @@
-import DesignerCredit from "@/components/DesignerCredit";
 export default function ContactSection() {
   return (
     <section
@@ -81,9 +80,6 @@ export default function ContactSection() {
         >
           © 2025 Zarin Home — von Habib &amp; Cristiana
         </p>
-        <div className="mt-5 text-sand/60">
-          <DesignerCredit site="zarin-home" />
-        </div>
       </div>
     </section>
   )
